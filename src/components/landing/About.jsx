@@ -59,8 +59,8 @@ const About = () => {
       <div className="bg-black flex justify-between text-white px-50">
         <NavLink to={'/admin'}>Admin</NavLink>
         <NavLink to={'/subAdmin'}>Sub-Admin</NavLink>
-        <button>Employee</button>
-        <button>User</button>
+        <NavLink to={'/emp'}>Employee</NavLink>
+        <NavLink to={'/user'}>User</NavLink>
       </div>
 
       <MobileAppSection />

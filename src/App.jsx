@@ -26,6 +26,13 @@ import EmployeeWorkload from './subadminDashboard/EmployeeWorkload'
 import AssignForm from './subadminDashboard/AssignForm'
 import RequestTracking from './subadminDashboard/RequestTracking'
 import Communication from './subadminDashboard/Communication'
+import EmployeeDashboard from './employeeDashboard/EmployeeDashboard'
+import EmployeeHome from './employeeDashboard/EmployeeHome'
+import RequestInbox from './employeeDashboard/RequestInbox'
+import PendingRequests from './employeeDashboard/PendingRequests'
+import CompletedRequests from './employeeDashboard/CompletedRequests'
+import UserDashboard from './userDashboard/UserDashboard'
+import UserHome from './userDashboard/UserHome'
 
 
 function App() {
@@ -33,6 +40,7 @@ function App() {
     <>
 
       <Routes>
+        {/* Landing */}
         <Route path='/' element={<Navbar />}>
           <Route index element={<HeroSection />} />
           <Route path='/about' element={<About />} />
@@ -42,6 +50,7 @@ function App() {
           <Route path='/forgot' element={<ForgotPassword />} />
         </Route>
 
+        {/* Admin */}
         <Route path='/admin' element={<AdminDashboard />}>
           <Route index element={<AdminHome />} />
           <Route path='users' element={<AllUsers />} />
@@ -53,6 +62,7 @@ function App() {
           <Route path='settings' element={<Settings />} />
         </Route>
 
+        {/* Sub Admin */}
         <Route path='/subAdmin' element={<SubAdminDashboard/>}>
           <Route index element={<SubAdminHome />} />
           <Route path='requests' element={<RequestFromAdmin />} />
@@ -62,11 +72,22 @@ function App() {
           <Route path='request-tracking' element={<RequestTracking />} />
           <Route path='communication' element={<Communication />} />
         </Route>
+        
+        {/* Employee */}
+        <Route path='/emp' element={<EmployeeDashboard />}>
+          <Route index element={<EmployeeHome />} />
+          <Route path='requests' element={<RequestInbox />} />
+          <Route path='pending' element={<PendingRequests />} />
+          <Route path='completed' element={<CompletedRequests />} />
+          <Route path='communication' element={<Communication />} />
+        </Route>
+
+        {/* User */}
+        <Route path='/user' element={<UserDashboard />}>
+          <Route index element={<UserHome />} />
+        </Route>
 
       </Routes>
-
-
-
 
     </>
   )
