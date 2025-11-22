@@ -18,6 +18,14 @@ import Profile from './adminDashboard/Profile'
 import Settings from './adminDashboard/Settings'
 import SubAdminOverview from './adminDashboard/SubAdminOverview'
 import FormManagement from './adminDashboard/FormManagement'
+import SubAdminDashboard from './subadminDashboard/SubAdminDashboard'
+import SubAdminHome from './subadminDashboard/SubAdminHome'
+import RequestFromAdmin from './subadminDashboard/RequestFromAdmin'
+import TeamsManagement from './subadminDashboard/TeamsManagement'
+import EmployeeWorkload from './subadminDashboard/EmployeeWorkload'
+import AssignForm from './subadminDashboard/AssignForm'
+import RequestTracking from './subadminDashboard/RequestTracking'
+import Communication from './subadminDashboard/Communication'
 
 
 function App() {
@@ -43,6 +51,16 @@ function App() {
           <Route path='formManagement' element={<FormManagement />} />
           <Route path='profile' element={<Profile />} />
           <Route path='settings' element={<Settings />} />
+        </Route>
+
+        <Route path='/subAdmin' element={<SubAdminDashboard/>}>
+          <Route index element={<SubAdminHome />} />
+          <Route path='requests' element={<RequestFromAdmin />} />
+          <Route path='teams' element={<TeamsManagement />} />
+          <Route path='workload' element={<EmployeeWorkload />} />
+          <Route path='assign-form' element={<AssignForm />} />
+          <Route path='request-tracking' element={<RequestTracking />} />
+          <Route path='communication' element={<Communication />} />
         </Route>
 
       </Routes>

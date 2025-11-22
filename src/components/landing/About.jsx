@@ -58,7 +58,7 @@ const About = () => {
 
       <div className="bg-black flex justify-between text-white px-50">
         <NavLink to={'/admin'}>Admin</NavLink>
-        <button>Sub-Admin</button>
+        <NavLink to={'/subAdmin'}>Sub-Admin</NavLink>
         <button>Employee</button>
         <button>User</button>
       </div>
