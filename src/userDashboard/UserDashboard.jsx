@@ -5,44 +5,40 @@ import { Outlet } from 'react-router-dom'
 import {
   Home,
   ClipboardList,
-  CheckCircle,
   Clock,
-  Inbox,
-  FileText,
-  MessageCircle,
-  BarChart3,
-  UserCheck
+  History,
+  MessageCircle
 } from "lucide-react";
 
 function UserDashboard() {
-    const options = [
-    {
-      label: "Dashboard",
-      icon: <Home size={18} />,
-      path: "/emp",
-    },
-    {
-      label: "Request Inbox",
-      icon: <Inbox size={18} />,
-      path: "/emp/requests",
-    },
-    {
-      label: "Pending",
-      icon: <Clock size={18} />,
-      path: "/emp/pending",
-    },
-    {
-      label: "Completed Work",
-      icon: <CheckCircle size={18} />,
-      path: "/emp/completed",
-    },
-    {
-      label: "Communication",
-      icon: <MessageCircle size={18} />,
-      path: "/emp/communication",
-    },
-    
-  ];
+const options = [
+  {
+    label: "Dashboard",
+    icon: <Home size={18} />,
+    path: "/emp",
+  },
+  {
+    label: "Form",
+    icon: <ClipboardList size={18} />,  // Form section
+    path: "/emp/form",
+  },
+  {
+    label: "Pending",
+    icon: <Clock size={18} />,          // Pending tasks
+    path: "/emp/pending",
+  },
+  {
+    label: "History",
+    icon: <History size={18} />,        // Completed/history
+    path: "/emp/history",
+  },
+  {
+    label: "Communication",
+    icon: <MessageCircle size={18} />,  // Messages
+    path: "/emp/communication",
+  },
+];
+
 
   return (
     <>
