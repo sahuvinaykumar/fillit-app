@@ -12,11 +12,12 @@ import ForgotPassword from './components/authentication/ForgotPassword'
 import AdminDashboard from './adminDashboard/AdminDashboard'
 import AdminHome from './adminDashboard/AdminHome'
 import AllUsers from './adminDashboard/AllUsers'
-import AdminOverview from './adminDashboard/AdminOverview'
 import EmployeeOverview from './adminDashboard/EmployeeOverview'
 import Billing from './adminDashboard/Billing'
-import Profile from './components/Profile'
-import Settings from './components/Settings'
+import Profile from './adminDashboard/Profile'
+import Settings from './adminDashboard/Settings'
+import SubAdminOverview from './adminDashboard/SubAdminOverview'
+import FormManagement from './adminDashboard/FormManagement'
 
 
 function App() {
@@ -34,16 +35,16 @@ function App() {
         </Route>
 
         <Route path='/admin' element={<AdminDashboard />}>
-          <Route index element={<AdminHome/>} />
-          <Route path='users' element={<AllUsers/>} />
-          <Route path='subAdmin' element={<AdminOverview/>} />
-          <Route path='employee' element={<EmployeeOverview/>} /> 
-          <Route path='billing' element={<Billing/>} />
+          <Route index element={<AdminHome />} />
+          <Route path='users' element={<AllUsers />} />
+          <Route path='subAdmin' element={<SubAdminOverview />} />
+          <Route path='employee' element={<EmployeeOverview />} />
+          <Route path='billing' element={<Billing />} />
+          <Route path='formManagement' element={<FormManagement />} />
+          <Route path='profile' element={<Profile />} />
+          <Route path='settings' element={<Settings />} />
         </Route>
 
-
-        <Route path='/profile' element={<Profile/>} />
-        <Route path='/settings' element={<Settings/>} />
       </Routes>
 
 

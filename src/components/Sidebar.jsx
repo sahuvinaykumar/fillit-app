@@ -46,7 +46,7 @@ const Sidebar = (props) => {
       {/* Sidebar */}
       <aside
         className={`
-          fixed md:static top-0 left-0 z-50
+          fixed md:sticky top-0 left-0 z-50
           h-screen p-5 flex flex-col justify-between
           bg-[#0e0e12]/80 backdrop-blur-xl 
           shadow-[0_0_35px_rgba(147,51,234,0.30)]
@@ -113,7 +113,7 @@ const Sidebar = (props) => {
           {/* Secondary Options */}
           <div className="space-y-3 mt-10">
             <NavLink
-              to={"/profile"}
+              to={"/admin/profile"}
               onClick={() => isMobile && setIsOpen(false)}
               className="flex items-center gap-3 text-gray-300 hover:text-purple-400 transition px-2 py-2"
             >
@@ -122,7 +122,7 @@ const Sidebar = (props) => {
             </NavLink>
 
             <NavLink
-              to={"/settings"}
+              to={"/admin/settings"}
               onClick={() => isMobile && setIsOpen(false)}
               className="flex items-center gap-3 text-gray-300 hover:text-purple-400 transition px-2 py-2"
             >

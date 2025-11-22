@@ -4,72 +4,55 @@ import { Download, IndianRupee, Search } from "lucide-react";
 const Billing = () => {
   const [search, setSearch] = useState("");
 
-  // Dummy billing data — replace with API results later
   const invoices = [
-    {
-      id: "INV-1001",
-      user: "Amit Sharma",
-      amount: 499,
-      date: "12 Jan 2025",
-      method: "UPI",
-      status: "Paid",
-    },
-    {
-      id: "INV-1002",
-      user: "Riya Patel",
-      amount: 299,
-      date: "14 Jan 2025",
-      method: "Credit Card",
-      status: "Pending",
-    },
-    {
-      id: "INV-1003",
-      user: "Deepak Verma",
-      amount: 799,
-      date: "10 Jan 2025",
-      method: "Wallet",
-      status: "Failed",
-    },
-    {
-      id: "INV-1004",
-      user: "Karan Patel",
-      amount: 1499,
-      date: "20 Jan 2025",
-      method: "Debit Card",
-      status: "Paid",
-    },
+    { id: "INV-1001", user: "Amit Sharma", amount: 499, date: "12 Jan 2025", method: "UPI", status: "Paid" },
+    { id: "INV-1002", user: "Riya Patel", amount: 299, date: "14 Jan 2025", method: "Credit Card", status: "Pending" },
+    { id: "INV-1003", user: "Deepak Verma", amount: 799, date: "10 Jan 2025", method: "Wallet", status: "Failed" },
+    { id: "INV-1004", user: "Karan Patel", amount: 1499, date: "20 Jan 2025", method: "Debit Card", status: "Paid" },
   ];
 
-  const filtered = invoices.filter((inv) =>
-    inv.user.toLowerCase().includes(search.toLowerCase()) ||
-    inv.id.toLowerCase().includes(search.toLowerCase())
+  const filtered = invoices.filter(
+    (inv) =>
+      inv.user.toLowerCase().includes(search.toLowerCase()) ||
+      inv.id.toLowerCase().includes(search.toLowerCase())
   );
 
   return (
-    <section className="p-6 space-y-8">
+    <section className="p-6 space-y-8 text-gray-200">
 
-      {/* HEADER + SEARCH */}
-      <div className="flex justify-between items-center">
-        <h1 className="text-xl font-semibold text-white">Billing & Invoices</h1>
+      {/* HEADER */}
+      <div className="flex justify-between items-center flex-wrap gap-4">
+        <h1 className="text-2xl font-semibold bg-gradient-to-r from-purple-400 to-pink-400 text-transparent bg-clip-text">
+          Billing & Invoice Management
+        </h1>
 
+        {/* Search Bar */}
         <div className="relative">
-          <Search className="absolute left-3 top-3 text-gray-500" size={18} />
+          <Search className="absolute left-3 top-3 text-gray-400" size={18} />
           <input
             type="text"
             placeholder="Search invoice or user..."
-            className="bg-[#1a1a1f] text-gray-300 pl-10 pr-4 py-2 rounded-xl outline-none w-72"
+            className="bg-[#1a1a1f] text-gray-300 pl-10 pr-4 py-2 rounded-xl w-72
+                       outline-none border border-purple-700/30 
+                       focus:ring-2 focus:ring-purple-500 transition-all"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
           />
         </div>
       </div>
 
-      {/* INVOICE TABLE */}
-      <div>
-        <h2 className="text-lg font-semibold text-white mb-3">Invoice Records</h2>
+      {/* INVOICE TABLE CARD */}
+      <div
+        className="
+          bg-[#121216]/70 p-6 rounded-2xl 
+          border border-purple-700/30 backdrop-blur-xl
+          shadow-[0_0_25px_rgba(128,0,255,0.25)]
+        "
+      >
+        <h2 className="text-xl font-semibold pb-5">Invoice Records</h2>
 
         <div className="overflow-x-auto rounded-xl">
-          <table className="w-full border-collapse bg-[#121216] text-gray-300">
+          <table className="w-full border-collapse text-gray-300">
             <thead className="bg-[#1d1d22] text-gray-400">
               <tr>
                 <th className="py-3 px-4 text-left">Invoice ID</th>
@@ -98,13 +81,13 @@ const Billing = () => {
                     {inv.amount}
                   </td>
 
-                  {/* Method */}
+                  {/* Payment Method */}
                   <td className="py-3 px-4 text-gray-400">{inv.method}</td>
 
-                  {/* Status Badge */}
+                  {/* STATUS BADGE */}
                   <td className="py-3 px-4">
                     <span
-                      className={`px-3 py-1 rounded-lg text-xs ${
+                      className={`px-3 py-1 rounded-lg text-xs whitespace-nowrap ${
                         inv.status === "Paid"
                           ? "bg-green-600/20 text-green-400"
                           : inv.status === "Pending"
@@ -116,9 +99,13 @@ const Billing = () => {
                     </span>
                   </td>
 
-                  {/* Download Button */}
+                  {/* DOWNLOAD */}
                   <td className="py-3 px-4">
-                    <button className="flex items-center gap-2 text-purple-400 hover:text-purple-300 transition">
+                    <button
+                      className="flex items-center gap-2 px-3 py-1 rounded-lg
+                                 bg-purple-600/20 text-purple-300
+                                 hover:bg-purple-600/30 transition"
+                    >
                       <Download size={18} />
                       <span className="text-sm">Invoice</span>
                     </button>
@@ -128,10 +115,7 @@ const Billing = () => {
 
               {filtered.length === 0 && (
                 <tr>
-                  <td
-                    colSpan="7"
-                    className="py-4 text-center text-gray-500 italic"
-                  >
+                  <td colSpan="7" className="py-4 text-center text-gray-500 italic">
                     No invoices found
                   </td>
                 </tr>
@@ -139,8 +123,8 @@ const Billing = () => {
             </tbody>
           </table>
         </div>
-      </div>
 
+      </div>
     </section>
   );
 };

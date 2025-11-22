@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { Home, Users, Shield, Badge, Receipt, User, Settings, LogOut } from "lucide-react";
-import Sidebar from "./Sidebar";
-import Header from "./Header";
+import { Home, ClipboardList, Users, Shield, Badge, Receipt, User, Settings, LogOut } from "lucide-react";
+import Sidebar from "../components/Sidebar";
+import Header from "../components/Header";
 import AdminHome from "./AdminHome";
 import AllUsers from "./AllUsers";
 import { Outlet } from "react-router-dom";
@@ -28,6 +28,11 @@ const AdminDashboard = () => {
             label: "Employee",
             icon: <Badge size={18} />,
             path: "/admin/employee"
+        },
+        {
+            label: "Form Management",
+            icon: <ClipboardList size={18} />,
+            path: "/admin/formManagement"
         },
         {
             label: "Billing",
