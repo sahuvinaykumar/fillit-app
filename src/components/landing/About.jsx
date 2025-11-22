@@ -2,6 +2,7 @@ import React from "react";
 import aboutImg from "../../assets/mobile-app.jpg";
 import MobileAppSection from "./MobileAppSection";
 import Footer from "./Footer";
+import { NavLink } from "react-router-dom";
 
 const About = () => {
   return (
@@ -54,6 +55,13 @@ const About = () => {
           bg-gradient-to-r from-blue-500 via-pink-500 to-purple-500 opacity-40">
         </div>
       </section>
+
+      <div className="bg-black flex justify-between text-white px-50">
+        <NavLink to={'/admin'}>Admin</NavLink>
+        <button>Sub-Admin</button>
+        <button>Employee</button>
+        <button>User</button>
+      </div>
 
       <MobileAppSection />
       <Footer />

@@ -41,6 +41,7 @@ function App() {
           <Route path='billing' element={<Billing/>} />
         </Route>
 
+
         <Route path='/profile' element={<Profile/>} />
         <Route path='/settings' element={<Settings/>} />
       </Routes>

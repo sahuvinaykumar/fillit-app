@@ -47,7 +47,7 @@ const Sidebar = (props) => {
       <aside
         className={`
           fixed md:static top-0 left-0 z-50
-          h-full p-5 flex flex-col justify-between
+          h-screen p-5 flex flex-col justify-between
           bg-[#0e0e12]/80 backdrop-blur-xl 
           shadow-[0_0_35px_rgba(147,51,234,0.30)]
           border-r border-purple-900/20
