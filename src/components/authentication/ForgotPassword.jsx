@@ -2,281 +2,172 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 const ForgotPassword = () => {
-  const [step, setstep] = useState(1);
+  const [step, setStep] = useState(1);
 
-  let content;
+  const nextStep = () => step < 3 && setStep(step + 1);
+  const prevStep = () => step > 1 && setStep(step - 1);
 
-  /* ---------------------- STEP 1 ------------------------- */
-  if (step == 1) {
-    content = (
-      <section className="min-h-screen flex items-center justify-center bg-[#0b0b0d] px-4 sm:px-6 text-gray-300">
-        <div className="bg-[#121216] w-full max-w-md rounded-2xl p-6 sm:p-8 md:p-10 shadow-[0_0_25px_rgba(128,0,255,0.25)] border border-gray-800 backdrop-blur-md">
+  return (
+    <section className="min-h-screen flex items-center justify-center bg-[#0b0b0d] text-gray-300 px-4 sm:px-6">
+      <div className="bg-[#121216] rounded-xl shadow-[0_0_25px_rgba(128,0,255,0.25)] p-6 sm:p-8 w-full max-w-lg border border-gray-800">
 
-          {/* Heading */}
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-center bg-gradient-to-r from-blue-400 via-pink-400 to-purple-500 bg-clip-text text-transparent">
-            Forgot Password
-          </h2>
-          <p className="text-gray-400 text-center mt-2 text-sm sm:text-base">
-            Reset your password in 3 easy steps
-          </p>
+        {/* TITLE */}
+        <h2 className="text-3xl sm:text-4xl font-extrabold text-center mb-1 bg-gradient-to-r from-blue-400 via-pink-400 to-purple-500 bg-clip-text text-transparent">
+          Forgot Password
+        </h2>
+        <p className="text-center text-gray-400 mb-8 text-sm">
+          Reset your password in 3 simple steps
+        </p>
 
-          {/* Steps Indicator */}
-          <div className="flex items-center mt-10">
+        {/* STEPS INDICATOR – SAME AS SIGNUP */}
+        <div className="flex items-center justify-center gap-6 sm:gap-10 mb-10">
+          {[1, 2, 3].map((num) => {
+            const isCompleted = step > num;
+            const isCurrent = step === num;
 
-            {/* Step 1 */}
-            <div className="flex flex-col justify-center items-center">
-              <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-gradient-to-r from-purple-500 to-blue-500 text-white flex items-center justify-center font-semibold shadow-lg">
-                1
+            return (
+              <div key={num} className="flex flex-col items-center">
+                <div
+                  className={`
+                    w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center 
+                    text-white font-semibold transition-all duration-300
+                    ${isCurrent 
+                      ? "bg-purple-600 shadow-[0_0_10px_rgba(128,0,255,0.6)]" 
+                      : isCompleted 
+                      ? "bg-blue-600 border border-blue-400" 
+                      : "bg-[#1b1b1f] border border-gray-600"
+                    }
+                  `}
+                >
+                  {num}
+                </div>
+                <p className="text-[10px] sm:text-xs text-gray-400 mt-2">
+                  {num === 1 && "Send OTP"}
+                  {num === 2 && "Verify OTP"}
+                  {num === 3 && "Reset Password"}
+                </p>
               </div>
-              <p className="text-gray-300 w-20 text-center text-xs sm:text-sm mt-2">Send OTP</p>
-            </div>
+            );
+          })}
+        </div>
 
-            <div className="flex-1 border-t border-gray-700 mx-2 sm:mx-3"></div>
-
-            {/* Step 2 */}
-            <div className="flex flex-col items-center opacity-60">
-              <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#1e1e22] border border-gray-700 text-gray-400 flex items-center justify-center font-semibold">
-                2
-              </div>
-              <p className="text-gray-500 w-20 text-center text-xs sm:text-sm mt-2">OTP Verification</p>
-            </div>
-
-            <div className="flex-1 border-t border-gray-700 mx-2 sm:mx-3"></div>
-
-            {/* Step 3 */}
-            <div className="flex flex-col items-center opacity-60">
-              <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#1e1e22] border border-gray-700 text-gray-400 flex items-center justify-center font-semibold">
-                3
-              </div>
-              <p className="text-gray-500 text-xs sm:text-sm text-center w-20 mt-2">Generate Password</p>
-            </div>
-          </div>
-
-          {/* Email Input */}
-          <div className="mt-10">
-            <label className="block text-gray-400 text-sm mb-2">Email Address</label>
+        {/* STEP 1 – EMAIL */}
+        {step === 1 && (
+          <div className="space-y-5">
+            <label className="block text-gray-400 text-sm">Email Address *</label>
             <input
-              type="text"
+              type="email"
               placeholder="Enter your registered email"
-              className="w-full p-3 rounded-md bg-[#1b1b1f] border border-gray-700 text-gray-300 placeholder-gray-500 focus:border-purple-500 focus:outline-none"
+              className="w-full p-3 rounded-md bg-[#1b1b1f] border border-gray-700 text-gray-300 focus:border-purple-500 focus:outline-none"
             />
-          </div>
 
-          {/* Button */}
-          <button
-            onClick={() => setstep(2)}
-            className="w-full mt-8 py-3 rounded-full bg-gradient-to-r from-purple-500 to-blue-500 text-white font-semibold shadow-md hover:scale-105 transition-all"
-          >
-            Send OTP
-          </button>
-
-          <hr className="border-gray-700 my-8" />
-
-          {/* Bottom Text */}
-          <p className="text-center text-gray-400 text-sm">
-            Remembered your password?{" "}
-            <Link to="/login" className="text-purple-400 hover:text-purple-300 font-semibold">
-              Sign In
-            </Link>
-          </p>
-        </div>
-      </section>
-    );
-  }
-
-  /* ---------------------- STEP 2 ------------------------- */
-  else if (step == 2) {
-    content = (
-      <section className="min-h-screen flex items-center justify-center bg-[#0b0b0d] px-4 sm:px-6 text-gray-300">
-        <div className="bg-[#121216] w-full max-w-md rounded-2xl p-6 sm:p-8 md:p-10 shadow-[0_0_25px_rgba(128,0,255,0.25)] border border-gray-800 backdrop-blur-md">
-
-          {/* Success Message */}
-          <div className="bg-green-900/20 text-green-400 border border-green-700 p-3 rounded-md text-center text-xs sm:text-sm">
-            We have e-mailed your password reset code!
-          </div>
-
-          {/* Heading */}
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-center mt-5 bg-gradient-to-r from-blue-400 via-pink-400 to-purple-500 bg-clip-text text-transparent">
-            Forgot Password
-          </h2>
-          <p className="text-gray-400 text-center mt-2 text-sm sm:text-base">
-            Reset your password in 3 easy steps
-          </p>
-
-          {/* Steps Indicator */}
-          <div className="flex items-center justify-between mt-10">
-
-            {/* Step 1 */}
-            <div className="flex flex-col justify-center items-center">
-              <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-blue-500 text-white flex items-center justify-center font-semibold">
-                1
-              </div>
-              <p className="text-gray-300 text-xs sm:text-sm mt-2">Send OTP</p>
-            </div>
-
-            <div className="flex-1 border-t border-gray-700 mx-2"></div>
-
-            {/* Step 2 */}
-            <div className="flex flex-col items-center">
-              <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-gradient-to-r from-purple-500 to-blue-500 text-white flex items-center justify-center font-semibold">
-                2
-              </div>
-              <p className="text-gray-300 text-xs sm:text-sm mt-2">OTP Verification</p>
-            </div>
-
-            <div className="flex-1 border-t border-gray-700 mx-2"></div>
-
-            {/* Step 3 */}
-            <div className="flex flex-col items-center opacity-60">
-              <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#1e1e22] border border-gray-700 text-gray-400 flex items-center justify-center font-semibold">
-                3
-              </div>
-              <p className="text-gray-500 text-xs sm:text-sm mt-2">Generate Password</p>
-            </div>
-          </div>
-
-          {/* OTP Inputs */}
-          <p className="text-center text-gray-400 mt-10 text-sm">Enter 5-Digit OTP</p>
-
-          <div className="flex justify-center gap-2 sm:gap-3 mt-6">
-            {["8", "0", "1", "4", "3"].map((n, i) => (
-              <input
-                key={i}
-                type="text"
-                maxLength="1"
-                defaultValue={n}
-                className="w-12 h-12 sm:w-14 sm:h-14 text-center text-xl sm:text-2xl font-semibold rounded-md bg-[#1b1b1f] border border-gray-700 text-gray-300 focus:border-purple-500"
-              />
-            ))}
-          </div>
-
-          {/* Resend Timer */}
-          <div className="flex justify-between text-xs sm:text-sm text-gray-500 mt-4 px-1">
-            <span>Didn't get the OTP?</span>
-            <span>Resend in 42s</span>
-          </div>
-
-          {/* Button */}
-          <button
-            onClick={() => setstep(3)}
-            className="w-full mt-8 py-3 rounded-full bg-gradient-to-r from-purple-500 to-blue-500 text-white font-semibold hover:scale-105 transition-all"
-          >
-            Verify OTP
-          </button>
-
-          <hr className="border-gray-700 my-8" />
-
-          <p className="text-center text-gray-400 text-sm">
-            Remembered your password?{" "}
-            <Link to="/login" className="text-purple-400 hover:text-purple-300 font-semibold">
-              Sign In
-            </Link>
-          </p>
-        </div>
-      </section>
-    );
-  }
-
-  /* ---------------------- STEP 3 ------------------------- */
-  else if (step == 3) {
-    content = (
-      <section className="min-h-screen flex items-center justify-center bg-[#0b0b0d] px-4 sm:px-6 text-gray-300">
-        <div className="bg-[#121216] w-full max-w-md rounded-2xl p-6 sm:p-8 md:p-10 shadow-[0_0_25px_rgba(128,0,255,0.25)] border border-gray-800 backdrop-blur-md">
-
-          {/* Success Msg */}
-          <div className="bg-green-900/20 text-green-400 border border-green-700 p-3 rounded-md text-center text-xs sm:text-sm">
-            This password reset token is valid.
-          </div>
-
-          {/* Heading */}
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-center mt-5 bg-gradient-to-r from-blue-400 via-pink-400 to-purple-500 bg-clip-text text-transparent">
-            Forgot Password
-          </h2>
-          <p className="text-gray-400 text-center mt-2 text-sm sm:text-base">
-            Reset your password in 3 easy steps
-          </p>
-
-          {/* Steps */}
-          <div className="flex items-center justify-between mt-10">
-
-            <div className="flex flex-col items-center">
-              <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-blue-500 text-white flex items-center justify-center font-semibold">
-                1
-              </div>
-              <p className="text-xs sm:text-sm text-gray-300 mt-2">Send OTP</p>
-            </div>
-
-            <div className="flex-1 border-t border-gray-700 mx-2"></div>
-
-            <div className="flex flex-col items-center">
-              <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-blue-500 text-white flex items-center justify-center font-semibold">
-                2
-              </div>
-              <p className="text-xs sm:text-sm text-gray-300 mt-2">OTP Verification</p>
-            </div>
-
-            <div className="flex-1 border-t border-gray-700 mx-2"></div>
-
-            <div className="flex flex-col items-center">
-              <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-gradient-to-r from-purple-500 to-blue-500 text-white flex items-center justify-center font-semibold shadow-lg">
-                3
-              </div>
-              <p className="text-xs sm:text-sm text-gray-300 mt-2">Generate Password</p>
-            </div>
-          </div>
-
-          {/* New Password */}
-          <div className="mt-10">
-            <label className="block text-gray-400 text-sm mb-2">
-              New Password
-            </label>
-            <input
-              type="password"
-              placeholder="Enter new password"
-              className="w-full p-3 rounded-md bg-[#1b1b1f] border border-gray-700 text-gray-300 focus:border-purple-500"
-            />
-          </div>
-
-          {/* Confirm Password */}
-          <div className="mt-6">
-            <label className="block text-gray-400 text-sm mb-2">
-              Confirm Password
-            </label>
-            <input
-              type="password"
-              placeholder="Re-enter new password"
-              className="w-full p-3 rounded-md bg-[#1b1b1f] border border-gray-700 text-gray-300 focus:border-purple-500"
-            />
-          </div>
-
-          {/* Buttons */}
-          <div className="flex justify-between mt-10">
             <button
-              onClick={() => setstep(2)}
-              className="px-6 sm:px-8 py-3 rounded-md border border-gray-700 text-gray-300 hover:bg-[#1b1b1f]"
+              onClick={nextStep}
+              className="w-full py-3 rounded-full bg-gradient-to-r from-purple-500 to-blue-500 text-white font-semibold hover:scale-105 transition"
+            >
+              Send OTP
+            </button>
+
+            <p className="text-center text-gray-400 text-sm mt-6">
+              Remembered your password?{" "}
+              <Link to="/login" className="text-purple-400">Login</Link>
+            </p>
+          </div>
+        )}
+
+        {/* STEP 2 – OTP */}
+        {step === 2 && (
+          <div>
+            <p className="bg-green-900/20 text-green-400 border border-green-700 p-2 rounded-md text-center text-xs mb-5">
+              OTP sent to your email.
+            </p>
+
+            <p className="text-center text-gray-400">Enter 5-digit OTP</p>
+
+            <div className="flex justify-center gap-2 sm:gap-3 mt-6">
+              {[1, 2, 3, 4, 5].map((i) => (
+                <input
+                  key={i}
+                  type="text"
+                  maxLength="1"
+                  className="w-12 h-12 sm:w-14 sm:h-14 text-center text-xl font-semibold rounded-md bg-[#1b1b1f] border border-gray-700 text-gray-300 focus:border-purple-500"
+                />
+              ))}
+            </div>
+
+            <button
+              onClick={nextStep}
+              className="w-full mt-8 py-3 rounded-full bg-gradient-to-r from-purple-500 to-blue-500 text-white font-semibold hover:scale-105 transition"
+            >
+              Verify OTP
+            </button>
+
+            <div className="flex justify-between mt-4 text-xs text-gray-500 px-1">
+              <span>Didn’t get the OTP?</span>
+              <span>Resend in 42s</span>
+            </div>
+
+            <button
+              onClick={prevStep}
+              className="w-full mt-5 py-2 rounded-md border border-gray-700 text-gray-300 hover:bg-[#1f1f23] transition"
             >
               Back
             </button>
-
-            <button className="px-6 sm:px-8 py-3 rounded-md bg-green-600 text-white font-semibold hover:scale-105">
-              Reset Password
-            </button>
           </div>
+        )}
 
-          <hr className="border-gray-700 my-8" />
+        {/* STEP 3 – NEW PASSWORD */}
+        {step === 3 && (
+          <div className="space-y-6">
+            <p className="bg-green-900/20 text-green-400 border border-green-700 p-2 rounded-md text-center text-xs">
+              OTP verified successfully.
+            </p>
 
-          <p className="text-center text-gray-400 text-sm">
-            Remembered your password?{" "}
-            <Link to="/login" className="text-purple-400 hover:text-purple-300 font-semibold">
-              Sign In
-            </Link>
-          </p>
-        </div>
-      </section>
-    );
-  }
+            <div>
+              <label className="block text-gray-400 text-sm mb-2">
+                New Password
+              </label>
+              <input
+                type="password"
+                placeholder="Enter new password"
+                className="w-full p-3 rounded-md bg-[#1b1b1f] border border-gray-700 text-gray-300 focus:border-purple-500"
+              />
+            </div>
 
-  return <>{content}</>;
+            <div>
+              <label className="block text-gray-400 text-sm mb-2">
+                Confirm Password
+              </label>
+              <input
+                type="password"
+                placeholder="Re-enter password"
+                className="w-full p-3 rounded-md bg-[#1b1b1f] border border-gray-700 text-gray-300 focus:border-purple-500"
+              />
+            </div>
+
+            <div className="flex justify-between mt-8">
+              <button
+                onClick={prevStep}
+                className="px-5 py-2 rounded-md border border-gray-700 text-gray-300 hover:bg-[#1f1f23] transition"
+              >
+                Back
+              </button>
+
+              <button className="px-6 py-2 rounded-full bg-green-600 text-white font-semibold hover:scale-105 transition">
+                Reset Password
+              </button>
+            </div>
+
+            <p className="text-center text-gray-400 text-sm mt-6">
+              Remembered your password?{" "}
+              <Link to="/login" className="text-purple-400">Login</Link>
+            </p>
+          </div>
+        )}
+
+      </div>
+    </section>
+  );
 };
 
 export default ForgotPassword;
