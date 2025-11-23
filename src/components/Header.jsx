@@ -31,14 +31,16 @@ const Header = ({ username = "Vinay" }) => {
         />
 
         {/* Logo */}
-        <h1
+        <div
           className="
             text-xl md:text-2xl font-bold 
-            text-purple-400 tracking-wide hidden sm:block
+            text-white tracking-wide hidden sm:block
+            rounded-full bg-blue-700 h-10 w-10
+            text-center pt-0.5
           "
         >
-          Fillit
-        </h1>
+          <p>F</p>
+        </div>
 
         {/* 3 Dots Menu */}
         <MoreVertical

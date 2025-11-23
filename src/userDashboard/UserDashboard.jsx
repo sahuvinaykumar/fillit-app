@@ -15,27 +15,27 @@ const options = [
   {
     label: "Dashboard",
     icon: <Home size={18} />,
-    path: "/emp",
+    path: "/user",
   },
   {
     label: "Form",
     icon: <ClipboardList size={18} />,  // Form section
-    path: "/emp/form",
+    path: "/user/form",
   },
   {
     label: "Pending",
     icon: <Clock size={18} />,          // Pending tasks
-    path: "/emp/pending",
+    path: "/user/pending",
   },
   {
     label: "History",
     icon: <History size={18} />,        // Completed/history
-    path: "/emp/history",
+    path: "/user/history",
   },
   {
     label: "Communication",
     icon: <MessageCircle size={18} />,  // Messages
-    path: "/emp/communication",
+    path: "/user/communication",
   },
 ];
 

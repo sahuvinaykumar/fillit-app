@@ -33,6 +33,10 @@ import PendingRequests from './employeeDashboard/PendingRequests'
 import CompletedRequests from './employeeDashboard/CompletedRequests'
 import UserDashboard from './userDashboard/UserDashboard'
 import UserHome from './userDashboard/UserHome'
+import UserForm from './userDashboard/UserForm'
+import UserPending from './userDashboard/UserPending'
+import UserHistory from './userDashboard/UserHistory'
+import UserCommunication from './userDashboard/UserCommunication'
 
 
 function App() {
@@ -85,6 +89,10 @@ function App() {
         {/* User */}
         <Route path='/user' element={<UserDashboard />}>
           <Route index element={<UserHome />} />
+          <Route path='form' element={<UserForm />} />
+          <Route path='pending' element={<UserPending />} />
+          <Route path='history' element={<UserHistory />} />
+          <Route path='communication' element={<UserCommunication />} />
         </Route>
 
       </Routes>
